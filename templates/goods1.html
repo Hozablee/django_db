@@ -1,0 +1,181 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shop Homepage - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static "css/shop-homepage.css" %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body background="{%static "img/aa.jpg" %}">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'check_login' %}">Home</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav right">
+                    <li>
+                        <a href="{% url 'logout_view' %}">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <!-- Page Content -->
+    <!-- <div class="container">
+    <h1>{{good_detail.goods_name}}</h1>
+    <h1>{{good_detail.goods_price}}</h1>
+    <h1>{{good_detail.goods_num}}</h1>
+
+    </div> -->
+    <!-- Page Content -->
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Portfolio Item Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">{{good_detail.goods_name}}
+                    <small> {{good_detail.goods_price}}.-THB</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+            <div class="col-md-6">
+                <img class="img-responsive" src= "{{good_detail.goods_photo.url}}" alt="">
+            </div>
+            <div class="col-md-4" style="background-color: #ffffcc" style="border-bottom: 1px solid rgba(0,0,0,0.25)" 
+                <h3>  รายละเอียด</h3>
+                <h4>{{good_detail.goods_detail}}</h4>
+            </div>
+            <br><br><br><br>
+            <ul>
+                <div class="col-md-6" method="POST"> 
+                    <a href=""><!-- {{good_detail.goods_name}} -->
+                    <button type='submit' class="btn btn-default" >
+                        <img src="{%static "img/buy.png" %}">
+                    </button></a>
+                </div>  
+            </ul>
+        </div>
+        <!-- /.row -->
+        <!-- Related Projects Row -->
+        <div class="row">
+
+            <div class="col-lg-12">
+               
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="{%static "js/jquery.js" %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{%static "js/bootstrap.min.js" %}"></script>
+    <script>
+    // function buy(){
+    //     var formData = new FormData();
+    //     formData.append("buying",{{good_detail.goods_name}});
+    //     formData.append("buying",{{good_detail.goods_name}});
+    //     $.ajax({
+    //         url: '/polls/buying/',
+    //         type: 'POST',
+    //         xhr: function() {
+    //             var myXhr = $.ajaxSettings.xhr();
+    //             return myXhr;
+    //         },
+    //         data: formData,
+    //         traditional: true,
+    //         cache: false,
+    //         contentType: false,
+    //         processData: false,
+    //         success: function(result){
+    //             console.log("OK ");
+    //         },
+    //         error: function(result){
+    //             console.log("NOT OK");
+    //         }
+    //     });
+    // }
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getCookie('csrftoken');
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+    </script>
+
+
+    
+
+
+</body>
+
+
+</html>
